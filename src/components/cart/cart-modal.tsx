@@ -7,7 +7,7 @@ import CartItem, { CartItemProps } from "./cart-item";
 import styles from "./cart-modal.module.css";
 
 interface Props {
-  clickOffModalHandler: MouseEventHandler;
+  toggleCartHandler: MouseEventHandler;
 }
 
 const CartModal = (props: Props) => {
@@ -43,7 +43,7 @@ const CartModal = (props: Props) => {
               <span>Total: ${totalPrice.toFixed(2)}</span>
             </div>
             <div>
-              <button>Close</button>
+              <button onClick={props.toggleCartHandler}>Close</button>
               <button>Order</button>
             </div>
           </div>
@@ -51,7 +51,7 @@ const CartModal = (props: Props) => {
         document.getElementById("cart-portal")!
       )}
       {ReactDOM.createPortal(
-        <Backdrop onClickHandler={props.clickOffModalHandler} />,
+        <Backdrop onClickHandler={props.toggleCartHandler} />,
         document.getElementById("backdrop-portal")!
       )}
     </>

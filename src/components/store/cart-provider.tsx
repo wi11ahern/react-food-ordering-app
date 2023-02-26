@@ -13,11 +13,19 @@ const cartItemsReducer = (state: any, action: any) => {
     case "ADD_CART_ITEM":
       if (updatedItems.hasOwnProperty(cartItem.id)) {
         updatedItems[cartItem.id].quantity += cartItem.quantity;
-        return updatedItems;
       } else {
         updatedItems[cartItem.id] = cartItem;
-        return updatedItems;
       }
+      return updatedItems;
+    case "REMOVE_CART_ITEM":
+      if (updatedItems.hasOwnProperty(cartItem.id)) {
+        if (updatedItems[cartItem.id].quantity === 1) {
+          delete updatedItems[cartItem.id];
+        } else {
+          updatedItems[cartItem.id].quantity -= 1;
+        }
+      }
+      return updatedItems;
     default:
       return updatedItems;
   }
@@ -30,8 +38,14 @@ const CartProvider = (props: Props) => {
     dispatchCartItems({ type: "ADD_CART_ITEM", cartItem: cartItem });
   };
 
+  const removeFromCartHandler = (cartItem: CartItemProps) => {
+    dispatchCartItems({ type: "REMOVE_CART_ITEM", cartItem: cartItem });
+  };
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCartHandler }}>
+    <CartContext.Provider
+      value={{ cartItems, addToCartHandler, removeFromCartHandler }}
+    >
       {props.children}
     </CartContext.Provider>
   );

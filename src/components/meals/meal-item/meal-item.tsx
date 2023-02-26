@@ -1,5 +1,6 @@
 import { useContext } from "react";
-import CartContext, { CartItemProps } from "../../store/cart-context";
+import { CartItemProps } from "../../cart/cart-item";
+import CartContext from "../../store/cart-context";
 import MealItemForm from "./meal-item-form";
 import styles from "./meal-item.module.css";
 
@@ -27,13 +28,13 @@ const MealItem = (props: Props) => {
   };
 
   return (
-    <li className={styles["meal-item"]}>
+    <li className={styles.meal}>
       <div>
         <h3>{props.name}</h3>
-        <div>{props.description}</div>
-        <div>{priceString}</div>
+        <div className={styles.description}>{props.description}</div>
+        <div className={styles.price}>{priceString}</div>
       </div>
-      <div className={styles.actions}>
+      <div>
         <MealItemForm onAddToCart={onAddToCartHandler} />
       </div>
     </li>

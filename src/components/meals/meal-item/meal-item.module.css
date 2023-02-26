@@ -1,22 +1,23 @@
-.meal-item {
+.meal {
   display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ccc;
 }
 
-.meal-item div {
+.meal h3 {
+  margin: 0 0 0.25rem 0;
 }
 
-.actions {
-  display: flex;
-  flex-direction: row;
+.description {
+  font-style: italic;
+  width: 90%;
 }
 
-.actions input {
-  height: 20px;
-  width: 40px;
-  margin: auto;
-}
-
-.actions button {
-  height: 20px;
-  margin: auto;
+.price {
+  margin-top: 0.25rem;
+  font-weight: bold;
+  color: #ad5502;
+  font-size: 1.25rem;
 }

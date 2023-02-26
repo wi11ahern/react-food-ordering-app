@@ -1,3 +1,5 @@
+import { SyntheticEvent, useContext } from "react";
+import CartContext from "../store/cart-context";
 import styles from "./cart-item.module.css";
 
 export interface CartItemProps {
@@ -10,6 +12,30 @@ export interface CartItemProps {
 interface Props extends CartItemProps {}
 
 const CartItem = (props: Props) => {
+  const context = useContext(CartContext);
+
+  const onDecreaseQuantityHandler = (e: SyntheticEvent<HTMLButtonElement>) => {
+    const cartItem: CartItemProps = {
+      id: props.id,
+      name: props.name,
+      price: props.price,
+      quantity: props.quantity,
+    };
+
+    context.removeFromCartHandler(cartItem);
+  };
+
+  const onIncreaseQuantityHandler = (e: SyntheticEvent<HTMLButtonElement>) => {
+    const cartItem: CartItemProps = {
+      id: props.id,
+      name: props.name,
+      price: props.price,
+      quantity: 1,
+    };
+
+    context.addToCartHandler(cartItem);
+  };
+
   return (
     <div>
       <div>
@@ -18,8 +44,8 @@ const CartItem = (props: Props) => {
         <p>{props.quantity}</p>
       </div>
       <div>
-        <button>-</button>
-        <button>+</button>
+        <button onClick={onDecreaseQuantityHandler}>-</button>
+        <button onClick={onIncreaseQuantityHandler}>+</button>
       </div>
     </div>
   );

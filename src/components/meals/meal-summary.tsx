@@ -3,7 +3,7 @@ import styles from "./meal-summary.module.css";
 
 const MealSummary = () => {
   return (
-    <Card className={styles.home}>
+    <Card className={styles['meals-summary']}>
       <section>
         <h2>Delicious Food, Delivered To You</h2>
         <p>

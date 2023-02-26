@@ -1,25 +1,17 @@
-import { ChangeEventHandler } from "react";
+import React, { InputHTMLAttributes, Ref } from "react";
+import styles from "./input.module.css";
 
-interface Props {
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
-  type: "number";
-  label: string;
-  value: any;
-  onChangeHandler?: ChangeEventHandler;
 }
 
-const Input = (props: Props) => {
+const Input = React.forwardRef((props: Props, ref: Ref<HTMLInputElement>) => {
   return (
-    <div>
-      <label htmlFor={props.id}>{props.label}</label>
-      <input
-        id={props.id}
-        type={props.type}
-        value={props.value}
-        onChange={props.onChangeHandler}
-      />
+    <div className={styles.input}>
+      <label htmlFor={props.id}>Amount</label>
+      <input ref={ref} {...props} />
     </div>
   );
-};
+});
 
 export default Input;

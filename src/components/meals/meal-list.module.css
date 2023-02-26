@@ -1,7 +1,7 @@
 .meals-card {
   background-color: white;
-  width: 40%;
-  margin: 10px auto;
+  width: 50%;
+  margin: 20px auto;
   display: flex;
   justify-content: center;
 }
@@ -10,4 +10,5 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
+  width: 100%;
 }

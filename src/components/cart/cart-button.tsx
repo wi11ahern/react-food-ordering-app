@@ -19,7 +19,7 @@ const CartButton = (props: Props) => {
     setTotalQuantity(runningQuantity);
   }, [cartItems]);
 
-  const onClickHandler = () => {
+  const toggleCartHandler = () => {
     setShowCart((prevState) => {
       return !prevState;
     });
@@ -27,12 +27,12 @@ const CartButton = (props: Props) => {
 
   return (
     <>
-      <button className={styles["cart-button"]} onClick={onClickHandler}>
+      <button className={styles["cart-button"]} onClick={toggleCartHandler}>
         <span>Cart Icon</span>
         <span>Your Cart</span>
         <span>{totalQuantity}</span>
       </button>
-      {showCart && <CartModal clickOffModalHandler={onClickHandler} />}
+      {showCart && <CartModal toggleCartHandler={toggleCartHandler} />}
     </>
   );
 };

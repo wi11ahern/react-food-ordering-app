@@ -1,19 +1,22 @@
-.home {
-  background-color: rgb(54, 54, 54);
+.meals-summary {
   text-align: center;
-  color: white;
+  max-width: 45rem;
   width: 40%;
   margin: auto;
-  display: flex;
-  justify-content: center;
+  background-color: #383838;
+  color: white;
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 1px 18px 10px rgba(0, 0, 0, 0.25);
 }
 
-.home h2 {
+.meals-summary h2 {
+  font-size: 2rem;
   padding: 10px;
   margin: 10px;
 }
 
-.home p {
+.meals-summary p {
   padding-bottom: 15px;
   margin: 10px;
 }
