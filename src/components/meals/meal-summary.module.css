@@ -1,0 +1,19 @@
+.home {
+  background-color: rgb(54, 54, 54);
+  text-align: center;
+  color: white;
+  width: 40%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.home h2 {
+  padding: 10px;
+  margin: 10px;
+}
+
+.home p {
+  padding-bottom: 15px;
+  margin: 10px;
+}

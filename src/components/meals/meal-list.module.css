@@ -1,0 +1,13 @@
+.meals-card {
+  background-color: white;
+  width: 40%;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.meals-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

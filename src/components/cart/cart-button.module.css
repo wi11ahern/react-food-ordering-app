@@ -1,0 +1,17 @@
+.cart-button {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  color: white;
+  background: rgba(67, 67, 67, 0.816);
+  border: 1px solid rgba(67, 67, 67, 0.816);
+  width: 200px;
+  font: 1.15rem;
+  border-radius: 30px;
+}
+
+.cart-button span {
+  font-style: normal;
+  padding: 6px 3px;
+  margin: auto;
+}

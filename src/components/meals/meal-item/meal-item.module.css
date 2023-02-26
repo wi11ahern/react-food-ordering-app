@@ -1,0 +1,22 @@
+.meal-item {
+  display: flex;
+}
+
+.meal-item div {
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+}
+
+.actions input {
+  height: 20px;
+  width: 40px;
+  margin: auto;
+}
+
+.actions button {
+  height: 20px;
+  margin: auto;
+}
