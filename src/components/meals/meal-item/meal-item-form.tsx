@@ -1,25 +1,15 @@
-import {
-  ChangeEvent,
-  FormEvent,
-  InputHTMLAttributes,
-  useRef,
-  useState,
-} from "react";
+import { FormEvent, useRef, useState } from "react";
 import Input from "../../ui/input";
 import styles from "./meal-item-form.module.css";
 
 interface Props {
+  cartItemId: number;
   onAddToCart: Function;
 }
 
 const MealItemForm = (props: Props) => {
   const [isValid, setIsValid] = useState<boolean>(true);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  // const onQuantityChangeHandler = (e: ChangeEvent) => {
-  //   const target = e.target as HTMLInputElement;
-  //   setQuantity(Number(target.value));
-  // };
 
   const onSubmitHandler = (e: FormEvent) => {
     e.preventDefault();
@@ -38,11 +28,14 @@ const MealItemForm = (props: Props) => {
   return (
     <form className={styles.form} noValidate onSubmit={onSubmitHandler}>
       <Input
-        id="amount"
-        type="number"
-        min={1}
-        max={5}
-        defaultValue={1}
+        id={`amount_${props.cartItemId}`}
+        label="Amount"
+        inputProps={{
+          type: "number",
+          min: 1,
+          max: 5,
+          defaultValue: 1,
+        }}
         ref={inputRef}
       />
       {!isValid && <p>Please enter a quantity between 1 and 5.</p>}
