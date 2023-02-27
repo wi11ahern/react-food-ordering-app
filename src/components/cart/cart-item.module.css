@@ -63,3 +63,9 @@
   background-color: #8a2b06;
   color: white;
 }
+
+.actions button {
+  font-size: 1.5em;
+  font-weight: normal;
+  text-align: center;
+}

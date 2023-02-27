@@ -43,9 +43,9 @@ const CartModal = (props: Props) => {
             <span className={styles.total}>
               Total: ${totalPrice.toFixed(2)}
             </span>
-            <div className={`${styles.button} ${styles.actions}`}>
-              <button onClick={props.toggleCartHandler}>Close</button>
-              <button>Order</button>
+            <div className={styles.actions}>
+              <button className={styles['button--alt']} onClick={props.toggleCartHandler}>Close</button>
+              <button className={styles.button}>Order</button>
             </div>
           </footer>
         </Card>,

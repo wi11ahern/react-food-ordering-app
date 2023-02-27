@@ -29,7 +29,7 @@ const MealItem = (props: Props) => {
 
   return (
     <li className={styles.meal}>
-      <div>
+      <div className={styles.summary}>
         <h3>{props.name}</h3>
         <div className={styles.description}>{props.description}</div>
         <div className={styles.price}>{priceString}</div>

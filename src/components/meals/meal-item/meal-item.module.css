@@ -12,7 +12,6 @@
 
 .description {
   font-style: italic;
-  width: 90%;
 }
 
 .price {
@@ -20,4 +19,8 @@
   font-weight: bold;
   color: #ad5502;
   font-size: 1.25rem;
+}
+
+.summary {
+  max-width: 50%;
 }
