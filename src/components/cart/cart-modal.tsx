@@ -1,9 +1,10 @@
-import { MouseEventHandler, useContext, useEffect, useState } from "react";
-import ReactDOM from "react-dom";
-import CartContext from "../store/cart-context";
+import { MouseEventHandler, useContext } from "react";
+
 import Backdrop from "../ui/backdrop";
 import Card from "../ui/card";
-import CartItem, { CartItemProps } from "./cart-item";
+import CartContext from "../store/cart-context";
+import CartItem from "./cart-item";
+import ReactDOM from "react-dom";
 import styles from "./cart-modal.module.css";
 
 interface Props {

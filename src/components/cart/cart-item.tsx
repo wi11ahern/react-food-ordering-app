@@ -1,4 +1,5 @@
 import { SyntheticEvent, useContext } from "react";
+
 import CartContext from "../store/cart-context";
 import styles from "./cart-item.module.css";
 

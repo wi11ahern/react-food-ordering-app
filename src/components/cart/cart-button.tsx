@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
+
 import CartContext from "../store/cart-context";
-import styles from "./cart-button.module.css";
 import CartModal from "./cart-modal";
+import styles from "./cart-button.module.css";
 
 interface Props {}
 

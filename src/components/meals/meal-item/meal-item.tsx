@@ -1,8 +1,8 @@
-import { useContext } from "react";
-import { CartItemProps } from "../../cart/cart-item";
 import CartContext from "../../store/cart-context";
+import { CartItemProps } from "../../cart/cart-item";
 import MealItemForm from "./meal-item-form";
 import styles from "./meal-item.module.css";
+import { useContext } from "react";
 
 export interface Meal {
   id: number;
