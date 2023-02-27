@@ -9,6 +9,11 @@ const CartButton = (props: Props) => {
   const [totalQuantity, setTotalQuantity] = useState<number>(0);
   const [showCart, setShowCart] = useState<boolean>(false);
   const { cartItems } = useContext(CartContext);
+  const [buttonIsHighlighted, setButtonIsHighlighted] =
+    useState<boolean>(false);
+  const buttonClasses = `${styles.button} ${
+    buttonIsHighlighted ? styles.bump : ""
+  }`;
 
   useEffect(() => {
     let runningQuantity = 0;
@@ -19,6 +24,20 @@ const CartButton = (props: Props) => {
     setTotalQuantity(runningQuantity);
   }, [cartItems]);
 
+  useEffect(() => {
+    if (!cartItems) {
+      return;
+    }
+    setButtonIsHighlighted(true);
+    const timer = setTimeout(() => {
+      setButtonIsHighlighted(false);
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [cartItems]);
+
   const toggleCartHandler = () => {
     setShowCart((prevState) => {
       return !prevState;
@@ -27,10 +46,10 @@ const CartButton = (props: Props) => {
 
   return (
     <>
-      <button className={styles["cart-button"]} onClick={toggleCartHandler}>
+      <button className={buttonClasses} onClick={toggleCartHandler}>
         <span>Cart Icon</span>
         <span>Your Cart</span>
-        <span>{totalQuantity}</span>
+        <span className={styles.badge}>{totalQuantity}</span>
       </button>
       {showCart && <CartModal toggleCartHandler={toggleCartHandler} />}
     </>

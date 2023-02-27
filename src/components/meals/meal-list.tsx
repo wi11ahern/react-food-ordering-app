@@ -45,8 +45,8 @@ const MealList = (props: Props) => {
   });
 
   return (
-    <Card className={styles["meals-card"]}>
-      <ul className={styles["meals-list"]}>{mealItems}</ul>
+    <Card className={styles.meals}>
+      <ul>{mealItems}</ul>
     </Card>
   );
 };

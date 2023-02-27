@@ -37,17 +37,19 @@ const CartItem = (props: Props) => {
   };
 
   return (
-    <div>
+    <li className={styles["cart-item"]}>
       <div>
-        <h3>{props.name}</h3>
-        <p>{props.price}</p>
-        <p>{props.quantity}</p>
+        <h2>{props.name}</h2>
+        <div className={styles.summary}>
+          <span className={styles.price}>${props.price}</span>
+          <span className={styles.quantity}>x {props.quantity}</span>
+        </div>
       </div>
-      <div>
+      <div className={styles.actions}>
         <button onClick={onDecreaseQuantityHandler}>-</button>
         <button onClick={onIncreaseQuantityHandler}>+</button>
       </div>
-    </div>
+    </li>
   );
 };
 

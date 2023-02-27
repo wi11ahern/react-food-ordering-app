@@ -37,16 +37,16 @@ const CartModal = (props: Props) => {
     <>
       {ReactDOM.createPortal(
         <Card className={styles.modal}>
-          <div>
-            {cartItemELements}
-            <div>
-              <span>Total: ${totalPrice.toFixed(2)}</span>
-            </div>
-            <div>
+          <ul className={styles["cart-items"]}>{cartItemELements}</ul>
+          <footer>
+            <span className={styles.total}>
+              Total: ${totalPrice.toFixed(2)}
+            </span>
+            <div className={`${styles.button} ${styles.actions}`}>
               <button onClick={props.toggleCartHandler}>Close</button>
               <button>Order</button>
             </div>
-          </div>
+          </footer>
         </Card>,
         document.getElementById("cart-portal")!
       )}
