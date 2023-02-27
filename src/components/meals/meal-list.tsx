@@ -1,37 +1,36 @@
+import { useEffect, useState } from "react";
+import useHttp from "../../hooks/useHttp";
 import Card from "../ui/card";
-import MealItem from "./meal-item/meal-item";
+import MealItem, { Meal } from "./meal-item/meal-item";
 import styles from "./meal-list.module.css";
-
-const meals = [
-  {
-    id: 1,
-    name: "Full Stack Burger",
-    description: "Taste the full stack!",
-    price: 11.99,
-  },
-  {
-    id: 2,
-    name: "Crispy Code Fries",
-    description: "Mmmm, crunchy!",
-    price: 4.99,
-  },
-  {
-    id: 3,
-    name: "Bug Salad",
-    description: "No bugs were harmed in the making of the salad..",
-    price: 7.5,
-  },
-  {
-    id: 4,
-    name: "Meal-as-Code",
-    description: "Deploying all the meals straight to your stomach!",
-    price: 29.99,
-  },
-];
 
 interface Props {}
 
 const MealList = (props: Props) => {
+  const [meals, setMeals] = useState<Meal[]>([]);
+  const { sendRequest, isLoading, encounteredError } = useHttp();
+
+  useEffect(() => {
+    const mealParser = (data: any) => {
+      const mealList = [];
+      for (const i in data) {
+        if (i === "0") continue;
+        mealList.push({ id: Number(i), ...data[i] });
+      }
+      console.log(mealList);
+      setMeals(mealList);
+    };
+
+    sendRequest(
+      {
+        url: "https://wills-react-sandbox-default-rtdb.firebaseio.com/meals.json",
+        method: "GET",
+        headers: { content: "application/json" },
+      },
+      mealParser
+    );
+  }, []);
+
   const mealItems = meals.map((meal) => {
     return (
       <MealItem
@@ -46,6 +45,7 @@ const MealList = (props: Props) => {
 
   return (
     <Card className={styles.meals}>
+      {isLoading && <p>Loading meals...</p>}
       <ul>{mealItems}</ul>
     </Card>
   );

@@ -1,4 +1,4 @@
-import { SyntheticEvent, useContext } from "react";
+import { SyntheticEvent, useContext, useEffect, useRef } from "react";
 
 import CartContext from "../store/cart-context";
 import styles from "./cart-item.module.css";
@@ -14,27 +14,49 @@ interface Props extends CartItemProps {}
 
 const CartItem = (props: Props) => {
   const context = useContext(CartContext);
-
-  const onDecreaseQuantityHandler = (e: SyntheticEvent<HTMLButtonElement>) => {
-    const cartItem: CartItemProps = {
-      id: props.id,
-      name: props.name,
-      price: props.price,
-      quantity: props.quantity,
-    };
-
-    context.removeFromCartHandler(cartItem);
+  const intervalRef = useRef<any>(null);
+  const cartItem: CartItemProps = {
+    id: props.id,
+    name: props.name,
+    price: props.price,
+    quantity: 1,
   };
 
-  const onIncreaseQuantityHandler = (e: SyntheticEvent<HTMLButtonElement>) => {
-    const cartItem: CartItemProps = {
-      id: props.id,
-      name: props.name,
-      price: props.price,
-      quantity: 1,
-    };
+  useEffect(() => {
+    return () => stopCounter();
+  }, []);
 
-    context.addToCartHandler(cartItem);
+  const startQuantityDecreaseCounter = (
+    e: SyntheticEvent<HTMLButtonElement>
+  ) => {
+    if (e.type === "click") {
+      context.removeFromCartHandler(cartItem);
+    } else {
+      if (intervalRef.current) return;
+      intervalRef.current = setInterval(() => {
+        context.removeFromCartHandler(cartItem);
+      }, 100);
+    }
+  };
+
+  const startQuantityIncreaseCounter = (
+    e: SyntheticEvent<HTMLButtonElement>
+  ) => {
+    if (e.type === "click") {
+      context.addToCartHandler(cartItem);
+    } else {
+      if (intervalRef.current) return;
+      intervalRef.current = setInterval(() => {
+        context.addToCartHandler(cartItem);
+      }, 100);
+    }
+  };
+
+  const stopCounter = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
   };
 
   return (
@@ -42,13 +64,27 @@ const CartItem = (props: Props) => {
       <div>
         <h2>{props.name}</h2>
         <div className={styles.summary}>
-          <span className={styles.price}>${props.price}</span>
-          <span className={styles.quantity}>x {props.quantity}</span>
+          <span className={styles.price}>${props.price.toFixed(2)}</span>
         </div>
       </div>
       <div className={styles.actions}>
-        <button onClick={onDecreaseQuantityHandler}>-</button>
-        <button onClick={onIncreaseQuantityHandler}>+</button>
+        <span className={styles.quantity}>x {props.quantity}</span>
+        <button
+          onClick={startQuantityDecreaseCounter}
+          onMouseDown={startQuantityDecreaseCounter}
+          onMouseUp={stopCounter}
+          onMouseLeave={stopCounter}
+        >
+          -
+        </button>
+        <button
+          onClick={startQuantityIncreaseCounter}
+          onMouseDown={startQuantityIncreaseCounter}
+          onMouseUp={stopCounter}
+          onMouseLeave={stopCounter}
+        >
+          +
+        </button>
       </div>
     </li>
   );
