@@ -12,7 +12,7 @@ const useHttp = () => {
 
   const sendRequest = async (
     config: RequestConfig,
-    dataParser: DataParserFunction
+    dataParser?: DataParserFunction
   ) => {
     try {
       setIsLoading(true);
@@ -26,7 +26,7 @@ const useHttp = () => {
         );
 
       const data = await response.json();
-      dataParser(data);
+      if (dataParser) dataParser(data);
       setEncounteredError(false);
     } catch (error) {
       setEncounteredError(true);
