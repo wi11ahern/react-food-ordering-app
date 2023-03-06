@@ -1,4 +1,4 @@
-import { MouseEventHandler, useContext } from "react";
+import { MouseEventHandler, useContext, useState } from "react";
 
 import Backdrop from "../ui/backdrop";
 import Card from "../ui/card";
@@ -6,6 +6,7 @@ import CartContext from "../store/cart-context";
 import CartItem from "./cart-item";
 import ReactDOM from "react-dom";
 import styles from "./cart-modal.module.css";
+import OrderForm from "../order/order-form";
 
 interface Props {
   toggleCartHandler: MouseEventHandler;
@@ -13,6 +14,7 @@ interface Props {
 
 const CartModal = (props: Props) => {
   const { cartItems } = useContext(CartContext);
+  const [showOrderForm, setShowOrderForm] = useState(false);
 
   let totalPrice = 0;
   for (const key in cartItems) {
@@ -34,6 +36,14 @@ const CartModal = (props: Props) => {
     );
   }
 
+  const orderHandler = () => {
+    setShowOrderForm((prevState) => !prevState);
+  };
+
+  const backToCartHandler = () => {
+    setShowOrderForm(false);
+  };
+
   return (
     <>
       {ReactDOM.createPortal(
@@ -44,8 +54,19 @@ const CartModal = (props: Props) => {
               Total: ${totalPrice.toFixed(2)}
             </span>
             <div className={styles.actions}>
-              <button className={styles['button--alt']} onClick={props.toggleCartHandler}>Close</button>
-              <button className={styles.button}>Order</button>
+              <button
+                className={styles["button--alt"]}
+                onClick={props.toggleCartHandler}
+              >
+                Close
+              </button>
+              <button
+                disabled={totalPrice <= 0}
+                className={styles.button}
+                onClick={orderHandler}
+              >
+                Order
+              </button>
             </div>
           </footer>
         </Card>,
@@ -54,6 +75,9 @@ const CartModal = (props: Props) => {
       {ReactDOM.createPortal(
         <Backdrop onClickHandler={props.toggleCartHandler} />,
         document.getElementById("backdrop-portal")!
+      )}
+      {showOrderForm && (
+        <OrderForm orderTotal={totalPrice} onBackToCart={backToCartHandler} />
       )}
     </>
   );

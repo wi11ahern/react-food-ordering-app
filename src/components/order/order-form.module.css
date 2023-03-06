@@ -1,0 +1,57 @@
+.modal {
+  position: fixed;
+  top: 20vh;
+  left: 5%;
+  width: 90%;
+  background-color: white;
+  padding: 0;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 31;
+}
+
+.name-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.name-container div {
+  margin: 1rem 0px 1rem 1rem;
+}
+
+.name input {
+  min-width: 10rem;
+  max-width: 20rem;
+}
+
+.address {
+  margin: 0px 0px 1rem 1rem;
+}
+
+.address input {
+  min-width: 20rem;
+  max-width: 40rem;
+}
+
+.actions {
+  text-align: right;
+  margin: 0 1rem 1rem 0;
+}
+
+.actions button {
+  width: 5rem;
+  height: 2rem;
+  font: inherit;
+  font-size: inherit;
+  background-color: #8a2b06;
+  border: 1px solid #8a2b06;
+  cursor: pointer;
+  border-radius: 6px;
+  color: white;
+}
+
+.actions button:hover,
+.actions button:active {
+  background-color: #5a1a01;
+  border-color: #5a1a01;
+}

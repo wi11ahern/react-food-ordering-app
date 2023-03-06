@@ -15,7 +15,7 @@ const MealList = (props: Props) => {
       const mealList = [];
       for (const i in data) {
         if (i === "0") continue;
-        mealList.push({ id: Number(i), ...data[i] });
+        mealList.push({ id: i, ...data[i] });
       }
       console.log(mealList);
       setMeals(mealList);

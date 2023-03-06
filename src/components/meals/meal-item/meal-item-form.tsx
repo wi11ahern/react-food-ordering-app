@@ -31,12 +31,10 @@ const MealItemForm = (props: Props) => {
       <Input
         id={`amount_${props.cartItemId}`}
         label="Amount"
-        inputProps={{
-          type: "number",
-          min: 1,
-          max: 5,
-          defaultValue: 1,
-        }}
+        type="number"
+        min={1}
+        max={5}
+        defaultValue={1}
         ref={inputRef}
       />
       {!isValid && <p>Please enter a quantity between 1 and 5.</p>}
